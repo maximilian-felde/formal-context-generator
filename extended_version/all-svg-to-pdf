@@ -1,0 +1,12 @@
+#! /bin/bash
+
+### enter output directory
+cd output
+### convert svg to eps
+ls |grep .svg |sed -e 's/\.svg$//' | xargs -I{} inkscape -E {}.eps {}.svg 
+### convert eps to pdf
+ls |grep .eps |sed -e 's/\.eps$//' | xargs -I{} epstopdf {}.eps 
+### remove svg files
+ls |grep .svg |xargs -I{} rm {}
+### remove eps files
+ls |grep .eps |xargs -I{} rm {}
